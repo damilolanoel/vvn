@@ -1,0 +1,1003 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --vvn-green: #1a5c2a;
+  --vvn-green-mid: #2e7d3a;
+  --vvn-green-light: #e8f4eb;
+  --vvn-gold: #b8860b;
+  --vvn-gold-light: #fdf6e3;
+  --vvn-white: #fafaf8;
+  --text-dark: #1a1a18;
+  --text-mid: #3d3d38;
+  --text-muted: #6b6b62;
+  --border: rgba(0,0,0,0.08);
+}
+
+body { font-family: 'DM Sans', sans-serif; background: transparent; color: var(--text-dark); }
+
+.charter { max-width: 680px; }
+
+.hero {
+  background: var(--vvn-green);
+  color: white;
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: 60px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(184,134,11,0.15);
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.75rem;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+.hero-title span { color: #f0c040; }
+.hero-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.hero-badges {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.badge-gold { background: rgba(184,134,11,0.25); color: #f0c040; border: 0.5px solid rgba(240,192,64,0.3); }
+.badge-white { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); border: 0.5px solid rgba(255,255,255,0.15); }
+
+.nav-strip {
+  display: flex;
+  overflow-x: auto;
+  background: #fff;
+  border-bottom: 0.5px solid var(--border);
+  scrollbar-width: none;
+}
+.nav-strip::-webkit-scrollbar { display: none; }
+.nav-btn {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.nav-btn:hover { color: var(--vvn-green); }
+.nav-btn.active { color: var(--vvn-green); border-bottom-color: var(--vvn-green); }
+
+.section { display: none; padding: 1.75rem 1.5rem; }
+.section.active { display: block; }
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--vvn-gold);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--vvn-green);
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
+}
+
+.mission-block {
+  background: var(--vvn-green-light);
+  border-left: 3px solid var(--vvn-green);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1rem;
+}
+.mission-block p { font-size: 14.5px; line-height: 1.7; color: var(--text-mid); }
+
+.vision-block {
+  background: var(--vvn-gold-light);
+  border-left: 3px solid var(--vvn-gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.25rem;
+}
+.vision-block p { font-size: 14.5px; line-height: 1.7; color: var(--text-mid); }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.value-card {
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+}
+.value-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--vvn-green-light);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.6rem;
+  font-size: 14px;
+}
+.value-name { font-size: 13px; font-weight: 500; color: var(--vvn-green); margin-bottom: 3px; }
+.value-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+.elections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+.election-card {
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+}
+.election-card.primary { border-color: var(--vvn-green); background: var(--vvn-green-light); }
+.election-date { font-size: 11px; font-weight: 500; color: var(--vvn-gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.election-name { font-size: 14px; font-weight: 500; color: var(--text-dark); line-height: 1.3; }
+.election-tag { display: inline-block; margin-top: 6px; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: rgba(26,92,42,0.1); color: var(--vvn-green); font-weight: 500; }
+.election-tag.highlight { background: var(--vvn-green); color: white; }
+
+.stat-row { display: flex; gap: 10px; margin-bottom: 1.25rem; }
+.stat-box {
+  flex: 1;
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+  text-align: center;
+}
+.stat-num { font-size: 22px; font-weight: 500; color: var(--vvn-green); font-family: 'Playfair Display', serif; }
+.stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.info-block {
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  margin-bottom: 10px;
+}
+.info-block-title { font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-block p, .info-block li { font-size: 13.5px; line-height: 1.65; color: var(--text-mid); }
+.info-block ul { padding-left: 1.1rem; }
+.info-block li { margin-bottom: 4px; }
+
+.steps-container { }
+.step {
+  display: flex; gap: 14px;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+}
+.step-num {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--vvn-green);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-body { flex: 1; }
+.step-title { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 4px; }
+.step-detail { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+.step-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-weight: 500;
+}
+.tag-required { background: #fef3c7; color: #92400e; }
+.tag-online { background: var(--vvn-green-light); color: var(--vvn-green); }
+.step-connector {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin-left: 14px;
+}
+
+.conduct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.conduct-card {
+  border-radius: 10px;
+  padding: 1rem;
+  border: 0.5px solid var(--border);
+}
+.conduct-card.allowed { background: #f0fdf4; border-color: rgba(22,163,74,0.2); }
+.conduct-card.banned { background: #fef2f2; border-color: rgba(220,38,38,0.15); }
+.conduct-label { font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.conduct-card.allowed .conduct-label { color: #15803d; }
+.conduct-card.banned .conduct-label { color: #dc2626; }
+.conduct-item { font-size: 12.5px; color: var(--text-mid); margin-bottom: 5px; padding-left: 12px; position: relative; line-height: 1.45; }
+.conduct-item::before { position: absolute; left: 0; top: 0; }
+.conduct-card.allowed .conduct-item::before { content: '✓'; color: #15803d; font-size: 11px; }
+.conduct-card.banned .conduct-item::before { content: '✗'; color: #dc2626; font-size: 11px; }
+
+.programs-list { }
+.program-item {
+  display: flex;
+  gap: 14px;
+  padding: 1rem;
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: #fff;
+}
+.program-num {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--vvn-green-light);
+  color: var(--vvn-green);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+}
+.program-name { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+.program-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+.program-target { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--vvn-gold-light); color: var(--vvn-gold); font-weight: 500; margin-top: 5px; border: 0.5px solid rgba(184,134,11,0.2); }
+
+.timeline { }
+.week-group { margin-bottom: 1.25rem; }
+.week-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.week-label { font-size: 11px; font-weight: 500; color: var(--vvn-gold); text-transform: uppercase; letter-spacing: 0.5px; }
+.week-line { flex: 1; height: 0.5px; background: var(--border); }
+.milestone {
+  display: flex; gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  border: 0.5px solid var(--border);
+  background: #fff;
+}
+.milestone-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--vvn-green); flex-shrink: 0; margin-top: 5px; }
+.milestone-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+.milestone-ongoing { border-color: rgba(184,134,11,0.3); background: var(--vvn-gold-light); }
+.milestone-ongoing .milestone-dot { background: var(--vvn-gold); }
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+.color-swatch {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid var(--border);
+}
+.swatch-color { height: 60px; }
+.swatch-info { padding: 8px; background: #fff; }
+.swatch-name { font-size: 12px; font-weight: 500; color: var(--text-dark); }
+.swatch-meaning { font-size: 11px; color: var(--text-muted); }
+
+.channels-list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.channel {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px; border-radius: 8px;
+  border: 0.5px solid var(--border); background: #fff;
+}
+.channel-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--vvn-green-light); display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+.channel-name { font-size: 13px; font-weight: 500; color: var(--text-dark); }
+.channel-handle { font-size: 11px; color: var(--text-muted); }
+
+.contact-table { width: 100%; border-collapse: collapse; }
+.contact-table tr { border-bottom: 0.5px solid var(--border); }
+.contact-table td { padding: 10px 12px; font-size: 13px; }
+.contact-table td:first-child { color: var(--text-muted); width: 40%; }
+.contact-table td:last-child { color: var(--text-dark); font-weight: 500; }
+
+.risk-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 0.5px solid var(--border);
+  margin-bottom: 8px;
+  background: #fff;
+}
+.risk-icon { width: 28px; height: 28px; flex-shrink: 0; border-radius: 6px; background: #fef3c7; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.risk-label { font-size: 13px; font-weight: 500; color: #92400e; margin-bottom: 2px; }
+.risk-fix { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+.founders-note {
+  margin-top: 0.5rem;
+  background: var(--vvn-green);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.founders-note::before {
+  content: '\201C';
+  position: absolute;
+  top: -10px; left: 10px;
+  font-size: 100px;
+  font-family: 'Playfair Display', serif;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+}
+.founders-note p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); font-style: italic; position: relative; }
+.founders-note-title { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #f0c040; margin-bottom: 0.75rem; font-style: normal; font-weight: 500; }
+
+.org-chart {
+  margin-bottom: 1.25rem;
+}
+.chart-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 0; }
+.chart-box {
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: center;
+  background: #fff;
+  min-width: 80px;
+}
+.chart-box.top { background: var(--vvn-green); color: white; border-color: var(--vvn-green); }
+.chart-box.exec { background: var(--vvn-green-light); border-color: rgba(26,92,42,0.3); }
+.chart-box-title { font-size: 12px; font-weight: 500; }
+.chart-box.top .chart-box-title { color: white; }
+.chart-box.exec .chart-box-title { color: var(--vvn-green); }
+.chart-box-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.chart-box.exec .chart-box-sub { color: rgba(26,92,42,0.7); }
+.chart-connector { display: flex; justify-content: center; }
+.chart-connector-line { width: 1px; height: 16px; background: var(--border); }
+.chart-connector-h {
+  display: flex; justify-content: center;
+  position: relative; height: 16px; margin-bottom: 0;
+}
+.chart-connector-h::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 1px; background: var(--border);
+}
+.dept-row { display: flex; justify-content: center; gap: 6px; }
+.dept-box {
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+  background: #fff;
+  flex: 1;
+  max-width: 140px;
+}
+.dept-title { font-size: 11px; font-weight: 500; color: var(--text-dark); }
+.dept-sub { font-size: 9.5px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+</style>
+
+<div class="charter">
+  <div class="hero">
+    <div class="hero-eyebrow">Founding Charter · Pre-Launch Edition</div>
+    <div class="hero-title">VoiceOfThe<span>Vote</span><br>Nigeria</div>
+    <div class="hero-sub">Empowering Citizens. Safeguarding Democracy. Observing Every Vote.</div>
+    <div class="hero-badges">
+      <span class="badge badge-gold">Target: INEC-Accredited 2026/27</span>
+      <span class="badge badge-white">Non-Partisan</span>
+      <span class="badge badge-white">CAC Registration Pending</span>
+    </div>
+  </div>
+
+  <div class="nav-strip" id="nav">
+    <button class="nav-btn active" onclick="show('identity',this)">Identity</button>
+    <button class="nav-btn" onclick="show('elections',this)">Elections</button>
+    <button class="nav-btn" onclick="show('structure',this)">Structure</button>
+    <button class="nav-btn" onclick="show('accreditation',this)">Accreditation</button>
+    <button class="nav-btn" onclick="show('conduct',this)">Code of Conduct</button>
+    <button class="nav-btn" onclick="show('programs',this)">Programs</button>
+    <button class="nav-btn" onclick="show('roadmap',this)">90-Day Plan</button>
+    <button class="nav-btn" onclick="show('brand',this)">Brand</button>
+    <button class="nav-btn" onclick="show('compliance',this)">Compliance</button>
+  </div>
+
+  <div id="identity" class="section active">
+    <div class="section-label">Section 01</div>
+    <div class="section-title">Who We Are</div>
+
+    <div class="mission-block">
+      <div class="info-block-title" style="color: var(--vvn-green); margin-bottom:5px;">Mission</div>
+      <p>VoiceOfTheVote Nigeria (VVN) exists to strengthen Nigeria's democratic process through transparent, non-partisan civic education, voter mobilization, and independent election observation — in full alignment with the Independent National Electoral Commission (INEC).</p>
+    </div>
+
+    <div class="vision-block">
+      <div class="info-block-title" style="color: var(--vvn-gold); margin-bottom:5px;">Vision</div>
+      <p>A Nigeria where every eligible citizen is registered, informed, and empowered to exercise their vote in free, fair, and credible elections.</p>
+    </div>
+
+    <div class="section-label" style="margin-bottom:0.6rem; margin-top:1.25rem;">Core Values</div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">⚖</div>
+        <div class="value-name">Impartiality</div>
+        <div class="value-desc">No affiliation with any political party, candidate, or political interest.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◎</div>
+        <div class="value-name">Transparency</div>
+        <div class="value-desc">All activities are open, documented, and publicly accountable.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◈</div>
+        <div class="value-name">Non-Partisanship</div>
+        <div class="value-desc">We serve only the integrity of the process — never any outcome.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◆</div>
+        <div class="value-name">Professionalism</div>
+        <div class="value-desc">All observers are trained, vetted, and certified before deployment.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">◑</div>
+        <div class="value-name">Inclusivity</div>
+        <div class="value-desc">Representing women, youth, persons with disabilities, and minorities.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="elections" class="section">
+    <div class="section-label">Section 02</div>
+    <div class="section-title">The Electoral Landscape</div>
+
+    <div class="section-label" style="margin-bottom:8px;">Upcoming Elections — Primary Windows for Observer Deployment</div>
+    <div class="elections-grid">
+      <div class="election-card">
+        <div class="election-date">June 20, 2026</div>
+        <div class="election-name">Ekiti State Governorship Election</div>
+        <span class="election-tag">Phase 1 Deployment</span>
+      </div>
+      <div class="election-card">
+        <div class="election-date">August 15, 2026</div>
+        <div class="election-name">Osun State Governorship Election</div>
+        <span class="election-tag">Phase 2 Deployment</span>
+      </div>
+      <div class="election-card primary">
+        <div class="election-date">January 16, 2027</div>
+        <div class="election-name">Presidential & National Assembly Election</div>
+        <span class="election-tag highlight">Primary Target</span>
+      </div>
+      <div class="election-card primary">
+        <div class="election-date">February 6, 2027</div>
+        <div class="election-name">Governorship & State House of Assembly</div>
+        <span class="election-tag highlight">Primary Target</span>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">Critical Timeline Markers</div>
+    <div class="info-block">
+      <div class="info-block-title">Notice of Election</div>
+      <p>INEC formally issued the Notice of Election on <strong>February 13, 2026</strong>, marking the official commencement of the 2027 electoral process under the Electoral Act 2026, which requires at least 300 days' notice.</p>
+    </div>
+    <div class="info-block">
+      <div class="info-block-title">Campaign Periods</div>
+      <p>Presidential & National Assembly campaigns commence <strong>August 19, 2026</strong>. Governorship & State Houses of Assembly campaigns commence <strong>September 9, 2026</strong>. All campaigns end 24 hours before Election Day.</p>
+    </div>
+    <div class="info-block">
+      <div class="info-block-title">Continuous Voter Registration (CVR)</div>
+      <p>Phase 1 registered <strong>2,782,589 eligible voters</strong>. Phase 2 runs <strong>January 5 – April 17, 2026</strong>. The full CVR exercise concludes <strong>August 30, 2026</strong> — this is the campaign registration deadline for VVN's "Register Now" initiative.</p>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px; margin-top:1.25rem;">Key Data Points</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">2.78M</div>
+        <div class="stat-lbl">Voters registered (Phase 1)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">&lt;30%</div>
+        <div class="stat-lbl">Voter turnout, recent elections</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">60%+</div>
+        <div class="stat-lbl">Turnout in 2003</div>
+      </div>
+    </div>
+
+    <div class="info-block" style="border-left: 3px solid #dc2626; border-radius: 0 8px 8px 0;">
+      <div class="info-block-title" style="color: #dc2626;">Voter Register Integrity Challenges</div>
+      <ul>
+        <li>Duplicate registrations</li>
+        <li>Underage and non-citizen registrations</li>
+        <li>Inclusion of deceased persons</li>
+        <li>Incomplete or inaccurate voter records</li>
+      </ul>
+      <p style="margin-top:8px; font-style:italic; font-size: 13px; color: var(--text-muted);">"No electoral process can command public confidence without trust in the integrity of its voters' register." — INEC Chairman</p>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-title">Technology Deployed: BVAS + IReV</div>
+      <p>The Commission is deploying the <strong>Bimodal Voter Accreditation System (BVAS)</strong> and strengthening the <strong>INEC Result Viewing (IReV) portal</strong> to enhance transparency. VVN will educate voters on BVAS usage to prevent disenfranchisement.</p>
+    </div>
+  </div>
+
+  <div id="structure" class="section">
+    <div class="section-label">Section 03</div>
+    <div class="section-title">Organizational Structure</div>
+
+    <div class="org-chart">
+      <div class="chart-row">
+        <div class="chart-box top" style="width:200px;">
+          <div class="chart-box-title">Board of Trustees</div>
+          <div class="chart-box-sub" style="color:rgba(255,255,255,0.65);">3–5 members · Oversight · Governance</div>
+        </div>
+      </div>
+      <div class="chart-connector"><div class="chart-connector-line"></div></div>
+      <div class="chart-row">
+        <div class="chart-box exec" style="width:220px;">
+          <div class="chart-box-title">Executive Director</div>
+          <div class="chart-box-sub">Chief Executive & Legal Representative</div>
+        </div>
+      </div>
+      <div class="chart-connector-h" style="margin-top:0;">
+        <div style="position:absolute; top:0; left:15%; right:15%; height:1px; background: var(--border);"></div>
+        <div style="position:absolute; top:0; left:15%; height:16px; width:1px; background:var(--border);"></div>
+        <div style="position:absolute; top:0; left:38%; height:16px; width:1px; background:var(--border);"></div>
+        <div style="position:absolute; top:0; left:62%; height:16px; width:1px; background:var(--border);"></div>
+        <div style="position:absolute; top:0; right:15%; height:16px; width:1px; background:var(--border);"></div>
+      </div>
+      <div class="dept-row" style="margin-top:0;">
+        <div class="dept-box">
+          <div class="dept-title">Operations & Finance</div>
+          <div class="dept-sub">Accounts · Budget</div>
+        </div>
+        <div class="dept-box">
+          <div class="dept-title">Advocacy & Civic Education</div>
+          <div class="dept-sub">Voter campaigns</div>
+        </div>
+        <div class="dept-box">
+          <div class="dept-title">Observer Coordination</div>
+          <div class="dept-sub">Field deployment</div>
+        </div>
+        <div class="dept-box">
+          <div class="dept-title">Comms & Public Engagement</div>
+          <div class="dept-sub">Media · Outreach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">Founding Team Roles</div>
+    <div class="info-block">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green); width:45%;">Executive Director</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">INEC liaison, legal representative, strategic leadership</td>
+        </tr>
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green);">Head of Advocacy</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">Voter education campaigns, community engagement</td>
+        </tr>
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green);">Observer Coordinator</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">Recruits, trains, and deploys field observers</td>
+        </tr>
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green);">Legal & Compliance Officer</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">CAC filings, INEC CSO registration, regulatory compliance</td>
+        </tr>
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green);">Communications Officer</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">Social media, press releases, public awareness</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 0; font-weight:500; font-size:13px; color:var(--vvn-green);">Finance & Admin Officer</td>
+          <td style="padding:8px 0; font-size:12.5px; color:var(--text-muted);">Accounts, budgeting, documentation</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="accreditation" class="section">
+    <div class="section-label">Section 04</div>
+    <div class="section-title">INEC Observer Accreditation Roadmap</div>
+    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:1.25rem; line-height:1.6;">This is the most critical pathway for VVN. Seven sequential steps must be completed in order. Begin Step 1 today.</p>
+
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">CAC Legal Registration</div>
+          <div class="step-detail">Register VoiceOfTheVote Nigeria as an NGO/CSO with the Corporate Affairs Commission. Obtain Certificate of Incorporation. File your Constitution/Memorandum & Articles of Association, clearly stating a non-partisan, civic/electoral observation mandate.</div>
+          <span class="step-tag tag-required">Mandatory first step</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">FIRS Tax Certificate</div>
+          <div class="step-detail">Register with the Federal Inland Revenue Service (Medium Tax Office) and obtain the NGO Tax Exemption Certificate. Open a dedicated organizational bank account.</div>
+          <span class="step-tag tag-required">Required for application</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Register with INEC Civil Society Desk</div>
+          <div class="step-detail">Visit INEC HQ: Plot 436, Zambezi Crescent, Maitama, FCT, Abuja. Proceed to the Elections and Party Monitoring Department. Obtain your CSO registration number — required before observer applications.</div>
+          <span class="step-tag tag-required">Must obtain CSO number first</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Complete Form EC 14A (I) — Observer Application</div>
+          <div class="step-detail">This platform is for organizations only, not individual observers. Obtain and read the published INEC advert before proceeding at www.inecnigeria.org. Prepare CAC registration, CSO registration, past accreditation letters, and reports in PDF format for upload.</div>
+          <span class="step-tag tag-online">Via observergroups.inecnigeria.org</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Await Approval & Publication</div>
+          <div class="step-detail">Successful observer groups are published in National Dailies and on the INEC website at the close of the application period. Monitor inecnigeria.org daily via the designated INEC Liaison Officer.</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-title">Complete Form EC 14A (II) — Deployment Form</div>
+          <div class="step-detail">Submit the Observer Deployment Form online. Passport photographs (JPEG format) of all deployed members must be arranged on an Area Council basis and submitted with this form.</div>
+          <span class="step-tag tag-online">Online submission</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-title">Physical Accreditation Tags</div>
+          <div class="step-detail">Fill accreditation form INEC/EPMC 02 at the Elections and Party Monitoring Department, INEC Headquarters, Maitama. Submit with passport-sized photographs. INEC will produce official identification/accreditation tags for all deployed observers.</div>
+          <span class="step-tag tag-required">In-person · Maitama, Abuja</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="conduct" class="section">
+    <div class="section-label">Section 05</div>
+    <div class="section-title">Observer Code of Conduct</div>
+    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:1.25rem; line-height:1.6;">Every VVN observer must adhere to the principles below, as mandated by INEC and guided by UN, AU, and ECOWAS treaties and protocols. Any group found to compromise these principles may be banned from future observation.</p>
+
+    <div class="conduct-grid">
+      <div class="conduct-card allowed">
+        <div class="conduct-label">Permitted</div>
+        <div class="conduct-item">Watch distribution of election materials</div>
+        <div class="conduct-item">Observe voting, sorting, and counting of ballots</div>
+        <div class="conduct-item">Be present at announcement of results</div>
+        <div class="conduct-item">Submit independent observation reports</div>
+      </div>
+      <div class="conduct-card banned">
+        <div class="conduct-label">Prohibited</div>
+        <div class="conduct-item">Handle election materials or ballots</div>
+        <div class="conduct-item">Interfere with polling or counting</div>
+        <div class="conduct-item">Wear any badge or symbol of a political party</div>
+        <div class="conduct-item">Refuse a lawful INEC directive to leave a station</div>
+      </div>
+    </div>
+
+    <div class="info-block" style="border-left: 3px solid var(--vvn-gold); border-radius: 0 8px 8px 0;">
+      <div class="info-block-title" style="color: var(--vvn-gold);">Core Principles</div>
+      <p>Impartiality · Objectivity · Non-Partisanship — as contained in the INEC Guidelines on Election Observation (2008).</p>
+    </div>
+
+    <div class="info-block" style="border-left: 3px solid #dc2626; border-radius: 0 8px 8px 0; margin-top:10px;">
+      <div class="info-block-title" style="color: #dc2626;">Zero Tolerance</div>
+      <p>Any falsification of documents in submissions leads to automatic disqualification and possible prosecution. VVN's Legal Officer must double-check all filings before submission.</p>
+    </div>
+  </div>
+
+  <div id="programs" class="section">
+    <div class="section-label">Section 06</div>
+    <div class="section-title">Voter Advocacy Programs</div>
+
+    <div class="programs-list">
+      <div class="program-item">
+        <div class="program-num">01</div>
+        <div>
+          <div class="program-name">"Register Now" Campaign</div>
+          <div class="program-desc">Mass mobilization aligned with the INEC CVR exercise, urging all eligible Nigerians to register before the August 30, 2026 deadline. Focus on first-time voters, women, and youth in underserved areas.</div>
+          <span class="program-target">Deadline: August 30, 2026</span>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">02</div>
+        <div>
+          <div class="program-name">Voter Education Roadshows</div>
+          <div class="program-desc">Materials aligned with INEC's revised National Voter Education Manual and youth-focused Civic and Voter Education Manual (11 modules), incorporating global best practices and digital engagement strategies for Nigeria's tech-savvy population.</div>
+          <span class="program-target">Nationwide · Youth-Focused</span>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">03</div>
+        <div>
+          <div class="program-name">"Know Your BVAS" Tech Literacy Drive</div>
+          <div class="program-desc">Educate voters on how the Bimodal Voter Accreditation System works so they arrive at polling units prepared and are not disenfranchised by technology unfamiliarity.</div>
+          <span class="program-target">Technology Literacy · Pre-Election</span>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">04</div>
+        <div>
+          <div class="program-name">Anti-Voter-Apathy Initiative</div>
+          <div class="program-desc">Targeting the under-30 demographic to reverse the steady decline in voter turnout — from over 60% in 2003 to below 30% today. Rallying call: "An indifferent electorate is a democracy in retreat."</div>
+          <span class="program-target">Under-30 Demographic · Digital-First</span>
+        </div>
+      </div>
+      <div class="program-item">
+        <div class="program-num">05</div>
+        <div>
+          <div class="program-name">CSO Stakeholder Engagement</div>
+          <div class="program-desc">VVN will contribute to INEC's vision of transparency, inclusivity, and sustained stakeholder engagement — recognizing that safeguarding democracy is a collective responsibility requiring vigilance, professionalism, and cooperation.</div>
+          <span class="program-target">Civil Society · INEC Partnership</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="roadmap" class="section">
+    <div class="section-label">Section 07</div>
+    <div class="section-title">90-Day Founding Action Plan</div>
+
+    <div class="timeline">
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Weeks 1–2</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Draft VVN constitution, select official name and logo, open dedicated organizational bank account</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Weeks 3–4</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">File CAC registration as an NGO — processing takes 4–8 weeks, begin immediately</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Weeks 5–6</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Apply for FIRS Tax Certificate (NGO category) — obtain Tax Exemption Certificate</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Weeks 7–8</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Register with INEC Civil Society Desk, Elections and Party Monitoring Department, Maitama, Abuja</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Week 9</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Launch social media pages — X, Instagram, Facebook, LinkedIn (@VoiceOfTheVoteNG)</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Week 10</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Recruit founding team — 6 to 10 core members minimum, begin vetting process</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Week 11</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Develop observer training curriculum — INEC-aligned, structured for rapid onboarding</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Week 12</span><div class="week-line"></div></div>
+        <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">Publicly launch the "Register Now" CVR Campaign — target August 30, 2026 voter registration deadline</div></div>
+      </div>
+      <div class="week-group">
+        <div class="week-header"><span class="week-label">Ongoing</span><div class="week-line"></div></div>
+        <div class="milestone milestone-ongoing"><div class="milestone-dot"></div><div class="milestone-text">Monitor inecnigeria.org daily via designated INEC Liaison Officer for observer application adverts and deadlines</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="brand" class="section">
+    <div class="section-label">Section 08</div>
+    <div class="section-title">Brand & Communications Identity</div>
+
+    <div class="info-block" style="margin-bottom:1rem;">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; color:var(--text-muted); font-size:12.5px; width:40%;">Organization Name</td>
+          <td style="padding:8px 0; font-size:13.5px; font-weight:500;">VoiceOfTheVote Nigeria (VVN)</td>
+        </tr>
+        <tr style="border-bottom: 0.5px solid var(--border);">
+          <td style="padding:8px 0; color:var(--text-muted); font-size:12.5px;">Tagline</td>
+          <td style="padding:8px 0; font-size:13.5px; font-style:italic; color:var(--vvn-green);">"Your Vote. Your Voice. Your Future."</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 0; color:var(--text-muted); font-size:12.5px;">Website</td>
+          <td style="padding:8px 0; font-size:13.5px; color:var(--vvn-green);">voiceofthevote.ng</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">Brand Colors</div>
+    <div class="brand-grid">
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#1a5c2a;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">VVN Green</div>
+          <div class="swatch-meaning">Democracy & Growth</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#f5f5f0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">VVN White</div>
+          <div class="swatch-meaning">Peace & Transparency</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-color" style="background:#b8860b;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">VVN Gold</div>
+          <div class="swatch-meaning">Accountability</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px;">Digital Channels</div>
+    <div class="channels-list">
+      <div class="channel">
+        <div class="channel-icon">X</div>
+        <div>
+          <div class="channel-name">X (Twitter)</div>
+          <div class="channel-handle">@VoiceOfTheVoteNG</div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-icon">IG</div>
+        <div>
+          <div class="channel-name">Instagram</div>
+          <div class="channel-handle">@VoiceOfTheVoteNG</div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-icon">FB</div>
+        <div>
+          <div class="channel-name">Facebook</div>
+          <div class="channel-handle">VoiceOfTheVote Nigeria</div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-icon">LI</div>
+        <div>
+          <div class="channel-name">LinkedIn</div>
+          <div class="channel-handle">VoiceOfTheVote Nigeria</div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-icon">WA</div>
+        <div>
+          <div class="channel-name">WhatsApp</div>
+          <div class="channel-handle">Observer Broadcast Group</div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-icon">@</div>
+        <div>
+          <div class="channel-name">Email Newsletter</div>
+          <div class="channel-handle">Stakeholder distribution</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:8px; margin-top:1.25rem;">INEC Key Contacts</div>
+    <div class="info-block">
+      <table class="contact-table">
+        <tr><td>INEC HQ Address</td><td>Plot 436, Zambezi Crescent, Maitama District, FCT, Abuja</td></tr>
+        <tr><td>Phone</td><td>4632 / 0700-CALL-INEC</td></tr>
+        <tr><td>Official Website</td><td>www.inecnigeria.org</td></tr>
+        <tr><td>Observer Portal</td><td>observergroups.inecnigeria.org</td></tr>
+        <tr><td>Department</td><td>Elections and Party Monitoring Department</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="compliance" class="section">
+    <div class="section-label">Section 09</div>
+    <div class="section-title">Compliance & Risk Management</div>
+
+    <div class="risk-row">
+      <div class="risk-icon">⏱</div>
+      <div>
+        <div class="risk-label">Late CAC Registration</div>
+        <div class="risk-fix">Begin immediately — CAC processing takes 4–8 weeks. File before any other step. Missing this delays all subsequent accreditation milestones.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-icon">⚠</div>
+      <div>
+        <div class="risk-label">Missing Observer Application Window</div>
+        <div class="risk-fix">Appoint a dedicated INEC Liaison Officer to monitor inecnigeria.org daily. Application windows open and close without extensive notice.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-icon">◐</div>
+      <div>
+        <div class="risk-label">Observer Misconduct in the Field</div>
+        <div class="risk-fix">Enforce VVN Code of Conduct strictly. Any observer found in violation is removed immediately. Misconduct can result in VVN being banned from future elections.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-icon">◻</div>
+      <div>
+        <div class="risk-label">Document Falsification</div>
+        <div class="risk-fix">All submissions must be double-checked by the Legal & Compliance Officer before filing. Falsification leads to automatic disqualification and possible prosecution.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <div class="risk-icon">◈</div>
+      <div>
+        <div class="risk-label">Political Infiltration</div>
+        <div class="risk-fix">Implement a strict, documented vetting process for all volunteer observers. Reject applicants with active party affiliations. Repeat screening before each deployment.</div>
+      </div>
+    </div>
+
+    <div class="founders-note">
+      <div class="founders-note-title">Founder's Note</div>
+      <p>Everything above is built on zero existing infrastructure — but that is exactly where the most impactful organizations are born. VoiceOfTheVote Nigeria has the potential to become one of Nigeria's most trusted domestic observer groups by the time the January 16, 2027 Presidential Election arrives. The first step is CAC registration. Start there today.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
